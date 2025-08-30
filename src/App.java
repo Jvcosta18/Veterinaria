@@ -40,7 +40,7 @@ public class App {
 
             System.out.print("Digite a idade: ");
             int idade = scanner.nextInt();
-            scanner.nextLine(); // Consome quebra de linha
+            scanner.nextLine();
 
             System.out.print("Digite o histórico: ");
             String historico = scanner.nextLine();
