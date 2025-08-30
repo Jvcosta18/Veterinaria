@@ -42,7 +42,7 @@ public class App {
             int idade = scanner.nextInt();
             scanner.nextLine();
 
-            System.out.print("Digite o histórico: ");
+            System.out.print("Digite o histórico:");
             String historico = scanner.nextLine();
 
             animais[i] = new Animal(nomeAnimal, especie, idade, historico);
