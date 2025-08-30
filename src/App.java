@@ -1,10 +1,33 @@
 import java.util.Scanner;
 
+/**
+ * Classe principal do sistema de clínica veterinária.
+ * <p>
+ * Este programa permite:
+ * <ul>
+ *     <li>Cadastrar animais com nome, espécie, idade e histórico.</li>
+ *     <li>Cadastrar tutores com nome, telefone e endereço.</li>
+ *     <li>Associar animais aos seus tutores.</li>
+ *     <li>Testar validações como idade negativa ou telefone vazio.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>
+ * A documentação das classes {@link Animal} e {@link Tutor} está disponível
+ * com detalhes sobre atributos, métodos e exceções.
+ * </p>
+ */
 public class App {
+
+    /**
+     * Método principal que executa o sistema de cadastro de animais e tutores.
+     *
+     * @param args Argumentos da linha de comando (não são utilizados neste programa).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int N = 1;
+        int N = 3;
         Animal[] animais = new Animal[N];
 
         for (int i = 0; i < N; i++) {
@@ -17,7 +40,7 @@ public class App {
 
             System.out.print("Digite a idade: ");
             int idade = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Consome quebra de linha
 
             System.out.print("Digite o histórico: ");
             String historico = scanner.nextLine();
