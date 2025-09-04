@@ -1,68 +1,51 @@
-import java.util.Scanner;
-
-/**
- * Classe principal do sistema de clínica veterinária.
- */
 public class App {
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        // Cadastro de animais
-        int N = 3;
-        Animal[] animais = new Animal[N];
+        System.out.println("--- Sistema de Clínica Veterinária ---");
 
-        for (int i = 0; i < N; i++) {
-            System.out.println("Cadastro do Animal " + (i + 1) + ":");
-            System.out.print("Digite o nome do animal: ");
-            String nomeAnimal = scanner.nextLine();
 
-            System.out.print("Digite a espécie: ");
-            String especie = scanner.nextLine();
+        Tutor tutor1 = new Tutor("Ana Silva", "123456789", "Rua A");
+        Tutor tutor2 = new Tutor("Pedro Costa", "987654321", "Avenida B");
 
-            System.out.print("Digite a idade: ");
-            int idade = scanner.nextInt();
-            scanner.nextLine(); // consumir quebra de linha
+        Animal animal1 = new Animal("Rex", "Cachorro", 5, "Histórico: vacinas em dia");
+        Animal animal2 = new Animal("Miau", "Gato", 2, "Histórico: consulta recente");
+        Animal animal3 = new Animal("Bolinha", "Cachorro", 3, "Histórico: sem problemas");
 
-            System.out.print("Digite o histórico: ");
-            String historico = scanner.nextLine();
+        Veterinario vet1 = new Veterinario("Dr. João", "CRMV-1234", "Clínico Geral");
+        Veterinario vet2 = new Veterinario("Dra. Maria", "CRMV-5678", "Dermatologia");
+        Veterinario vet3 = new Veterinario("Dr. Carlos", "CRMV-9012", "Ortopedia");
 
-            animais[i] = new Animal(nomeAnimal, especie, idade, historico);
-        }
 
-        // Cadastro de tutores
-        int T = 2;
-        Tutor[] tutores = new Tutor[T];
+        tutor1.adicionarAnimal(animal1);
+        tutor1.adicionarAnimal(animal2);
+        tutor2.adicionarAnimal(animal3);
 
-        for (int i = 0; i < T; i++) {
-            System.out.println("Cadastro do Tutor " + (i + 1) + ":");
-            System.out.print("Digite o nome do tutor: ");
-            String nomeTutor = scanner.nextLine();
+        System.out.println("\n--- Animais dos Tutores ---");
+        tutor1.listarAnimais();
+        tutor2.listarAnimais();
 
-            System.out.print("Digite o telefone: ");
-            String telefone = scanner.nextLine();
 
-            System.out.print("Digite o endereço: ");
-            String endereco = scanner.nextLine();
+        vet2.setSupervisor(vet1);
+        vet3.setSupervisor(vet1);
 
-            tutores[i] = new Tutor(nomeTutor, telefone, endereco);
-        }
+        System.out.println("\n--- Dados dos Veterinários ---");
+        System.out.println(vet1.retornaDados());
+        System.out.println(vet2.retornaDados());
+        System.out.println(vet3.retornaDados());
 
-        System.out.println("Cadastro concluído!");
 
-        // Vincular cada animal a dois tutores
-        for (Animal animal : animais) {
-            tutores[0].adicionarAnimal(animal);
-            tutores[1].adicionarAnimal(animal);
-        }
+        System.out.println("\n--- Criando um Atendimento ---");
+        Atendimento atendimento1 = new Atendimento("2025-09-04", "Consulta de rotina", vet1);
+        atendimento1.adicionarProcedimento(new Procedimento("Exame de Sangue", 100.00, "Resultados normais"));
+        atendimento1.adicionarProcedimento(new Procedimento("Vacina Antirrábica", 50.00, ""));
 
-        // Testar listagem
-        for (Tutor tutor : tutores) {
-            tutor.listarAnimais();
-        }
+        atendimento1.exibirAtendimento();
 
-        for (Animal animal : animais) {
-            animal.listarTutores();
-        }
+
+        System.out.println("\n--- Criando outro Atendimento ---");
+        Atendimento atendimento2 = new Atendimento("2025-09-04", "Consulta de pele", vet2);
+        atendimento2.adicionarProcedimento(new Procedimento("Exame Dermatológico", 80.00, ""));
+
+        atendimento2.exibirAtendimento();
     }
 }
