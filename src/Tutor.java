@@ -1,50 +1,69 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Representa um tutor responsável por um ou mais animais.
- * Contém informações de contato como telefone e endereço.
+ * Classe que representa um Tutor de animais.
  */
 public class Tutor {
     private String nome;
     private String telefone;
     private String endereco;
+    private List<Animal> animais; // cada tutor pode ter vários animais
 
     /**
-     * Cria uma nova instância de Tutor.
+     * Construtor da classe Tutor.
      *
      * @param nome     Nome do tutor.
-     * @param telefone Telefone de contato (não pode ser vazio).
+     * @param telefone Telefone de contato.
      * @param endereco Endereço do tutor.
-     * @throws IllegalArgumentException se o telefone for vazio ou nulo.
      */
     public Tutor(String nome, String telefone, String endereco) {
-        setNome(nome);
-        setTelefone(telefone);
-        setEndereco(endereco);
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.animais = new ArrayList<>();
     }
 
-    /** @return Nome do tutor. */
-    public String getNome() { return nome; }
+    public String getNome() {
+        return nome;
+    }
 
-    /** @param nome Nome do tutor. */
-    public void setNome(String nome) { this.nome = nome; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    /** @return Telefone do tutor. */
-    public String getTelefone() { return telefone; }
+    public String getTelefone() {
+        return telefone;
+    }
 
-    /**
-     * Define o telefone do tutor.
-     *
-     * @param telefone Telefone do tutor (não pode ser vazio).
-     * @throws IllegalArgumentException se o telefone for vazio ou nulo.
-     */
     public void setTelefone(String telefone) {
-        if (telefone == null || telefone.isEmpty())
-            throw new IllegalArgumentException("Telefone não pode estar vazio!");
         this.telefone = telefone;
     }
 
-    /** @return Endereço do tutor. */
-    public String getEndereco() { return endereco; }
+    public String getEndereco() {
+        return endereco;
+    }
 
-    /** @param endereco Endereço do tutor. */
-    public void setEndereco(String endereco) { this.endereco = endereco; }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    /**
+     * Associa um animal a este tutor.
+     *
+     * @param animal Animal a ser adicionado.
+     */
+    public void adicionarAnimal(Animal animal) {
+        this.animais.add(animal);
+    }
+
+    /**
+     * Lista todos os animais deste tutor.
+     */
+    public void listarAnimais() {
+        System.out.println("Animais do tutor " + nome + ":");
+        for (Animal a : animais) {
+            System.out.println("- " + a.getNome() + " (" + a.getEspecie() + ")");
+        }
+    }
 }
